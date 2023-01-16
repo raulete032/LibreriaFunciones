@@ -1,19 +1,9 @@
 
-
-
-/***************
- * 
- * NODOS
- * 
- ****************/
-
-
-
 /**
  * Función que crea nodos
  * @param {*} tipo Tipo de nodo
  * @param {*} txt Texto (en su caso)
- * @returns 
+ * @returns -> Devuelve el nodo
  */
 function creaNodo(tipo, txt) {
 
@@ -34,91 +24,18 @@ function creaNodo(tipo, txt) {
 
 
 /**
- * Función que inserta al final del todo
- * @param {*} padre Elemento padre
- * @param {*} nodo Nodo que se inserta
- */
-function insertarAlFinal(padre, nodo) {
-    padre.appendChild(nodo);
-}
-
-
-/**
- * Función que insertar un nodo ANTES de un nodo referencia
- * @param {*} padre Elemento padre
- * @param {*} newNodo Nodo a insertar
- * @param {*} nodoRef Nodo referencia
- */
-function insertaEnBefore(padre, newNodo, nodoRef) {
-    padre.insertBefore(newNodo, nodoRef);
-}
-
-
-/**
  * Función que inserta un nodo DESPUÉS de un nodo referencia
  * @param {*} padre 
  * @param {*} newNodo 
  * @param {*} nodoRef 
  */
-function insertarEnAfter(padre, newNodo, nodoRef) {
+function insertarDespuesDe(padre, newNodo, nodoRef) {
 
     if (nodoRef.nextSibling)
         padre.insertBefore(newNodo, nodoRef.nextSibling);
     else
         padre.appendChild(newNodo);
 }
-
-
-/**
- * Función que elimina un nodo que se le pasa como parámetro
- * @param {*} nodo El nodo a eliminar
- */
-function eliminaNodo(nodo) {
-    nodo.remove();
-}
-
-
-/**
- * Función que reemplaza un nodo por otro
- * @param {*} padre Elemento padre
- * @param {*} newNodo Nodo nuevo
- * @param {*} oldNodo Nodo a reemplazar
- */
-function reemplazaNodo(padre, newNodo, oldNodo) {
-    padre.replaceChild(newNodo, oldNodo);
-}
-
-
-/**
- * Función que clona un nodo
- * @param {*} nodo Nodo a clonar
- * @param {*} boolean Si es "true" clona también el contenido
- *                    Si es "false" solo clona el elemento
- * @returns Devuelve el clon
- */
-function clonaNodo(nodo, boolean) {
-    return nodo.cloneNode(boolean);
-}
-
-/**
- * Función que añade un atributo a un nodo
- * @param {*} nodo Nodo al que se le añade el atributo
- * @param {*} atributo Atributo
- * @param {*} valor Valor del atributo
- */
-function añadeAtributo(nodo, atributo, valor) {
-    nodo.setAttribute(atributo, valor);
-}
-
-
-
-
-
-/*************************
- * 
- * COOKIES
- * 
- **************************/
 
 
 /**
@@ -139,7 +56,8 @@ function creaCookie(nombre, valor, expira) {
 
 
 /**
- * Función que le suma horas, minutos y segundos a la hora actual
+ * Función que le suma horas, minutos y segundos a la hora actual.
+ * Función útil para la expiración de cookies.
  * @param {*} h Horas
  * @param {*} m Minutos
  * @param {*} s Segundos
@@ -202,10 +120,10 @@ function expiraExtraLargo(d, m, a, h, min, s) {
 
 /**
  * Función que devuelve el contenido de una cookie
- * @param {*} nomCookie 
- * @returns El valor de la cookie
+ * @param {*} nomCookie -> Nombre de la cookie
+ * @returns El valor de la cookie (si no existe, devuelve null)
  */
-function obtenerCookie(nomCookie) {
+function dameCookie(nomCookie) {
 
     if (document.cookie != "") {
         let arrayCoookies = document.cookie.split(";");
@@ -222,6 +140,10 @@ function obtenerCookie(nomCookie) {
 }
 
 
+/**
+ * Función que devuelve la key de todas las cookies
+ * @returns {Array} -> Array con todas las key
+ */
 function obtenerTodasCookies() {
     let array = [];
     if (document.cookie != "") {
@@ -237,10 +159,6 @@ function obtenerTodasCookies() {
     return array;
 }
 
-
-
-
-
 /**
  * Función que elimina la cookie que se le pasa como parámetro
  * @param {*} nomCookie 
@@ -251,53 +169,6 @@ function eliminaCookie(nomCookie) {
 
     creaCookie(nomCookie, "lo que sea", fechaNacimiento);
 }
-
-
-
-
-/*********************
- * 
- * SESSION STORAGE
- * 
- *********************/
-
-
-/**
- * Función que crea una Session Storage
- * @param {*} clave
- * @param {*} valor 
- */
-function creaSessionStorage(clave, valor) {
-    sessionStorage.setItem(clave, valor);
-}
-
-
-/**
- * Función que devuelve el valor de una Session Storage a partir de su clave
- * @param {*} clave 
- * @returns El valor asociado a esa clave. Si no existe, devuelve null
- */
-function obtenerSessionStorage(clave) {
-    return sessionStorage.getItem(clave);
-}
-
-
-/**
- * Función que elimina una Session Storage a partir de su clave
- * @param {*} clave 
- */
-function eliminaUnaSessionStorage(clave) {
-    sessionStorage.removeItem(clave);
-}
-
-
-/**
- * Función que elimina todas las Session Storage
- */
-function eliminaTodasSessionStorage() {
-    sessionStorage.clear();
-}
-
 
 /**
  * Función que nos devuelve el número de Session Storage que hay actualmente.
@@ -323,53 +194,6 @@ function obtenerTodasSessionStorage() {
         array.push(localS);
     }
     return array;
-}
-
-
-
-
-
-/*********************
- * 
- * LOCAL STORAGE
- * 
- *********************/
-
-
-/**
- * Función que crea una Local Storage
- * @param {*} clave
- * @param {*} valor 
- */
-function creaLocalStorage(clave, valor) {
-    localStorage.setItem(clave, valor);
-}
-
-
-/**
- * Función que devuelve el valor de una Local Storage a partir de su clave
- * @param {*} clave 
- * @returns El valor asociado a esa clave. Si no existe, devuelve null
- */
-function obtenerLocalStorage(clave) {
-    return localStorage.getItem(clave);
-}
-
-
-/**
- * Función que elimina una Session Storage a partir de su clave
- * @param {*} clave 
- */
-function eliminaUnaLocalStorage(clave) {
-    localStorage.removeItem(clave);
-}
-
-
-/**
- * Función que elimina todas las Session Storage
- */
-function eliminaTodasLocalStorage() {
-    localStorage.clear();
 }
 
 
@@ -399,16 +223,6 @@ function obtenerTodasLocalStorage() {
     return array;
 }
 
-
-
-
-
-
-/*********************
- * 
- * CACHÉ
- * 
- *********************/
 
 
 /**
@@ -581,46 +395,6 @@ function matchCacheAndAdd(req, nomCache, elemento, atributo) {
         })
 }
 
-
-function matchCacheAndAdd222(req, nomCache, elemento, atributo) {
-
-    caches.match(req)
-        .then(function (resp) {
-            if (resp) {
-                elemento.setAttribute(atributo, resp.url);
-            }
-            else {
-                fetch(req)
-                    .then(function (resp) {
-                        if (resp.ok) {
-                            caches.open(nomCache)
-                                .then(function (cache) {
-                                    cache.add(resp.url);
-                                })
-                                .catch(function (er) {
-                                    console.error("ERROR en el open del matchCacheAndAdd " + er);
-                                })
-                        }
-                    })
-                    .catch(function (er) {
-                        console.error("ERROR en el fetch de matchCacheAndAdd " + er)
-                    })
-
-            }
-        })
-        .catch(function (er) {
-            console.error("ERROR en el match del matchCacheAndAdd " + er);
-        })
-}
-
-
-
-/*********************
- * 
- * NOTIFICACIONES
- * 
- *********************/
-
 function creaNotificacion(titulo, msn, icono) {
 
     if (!("Notification" in window)) {
@@ -643,19 +417,6 @@ function creaNotificacion(titulo, msn, icono) {
         })
     }
 }
-
-
-
-
-
-
-
-
-/*********************
- * 
- * FECHA Y HORA
- * 
- *********************/
 
 
 /**
@@ -687,12 +448,6 @@ function temporizador(date, h, m, s) {
 }
 
 
-/*********************
- * 
- * FUNCIONES ÚTILES
- * 
- *********************/
-
 /**
  * Función que devuelve un número aleatorio entre el min y el max
  * @param {*} min 
@@ -704,9 +459,6 @@ function generaAleatorio(min, max) {
     num = Math.round(num);
     return num;
 }
-
-
-
 
 
 /**
