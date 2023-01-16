@@ -15,7 +15,7 @@
  * @param {*} txt Texto (en su caso)
  * @returns 
  */
- export function creaNodo(tipo, txt) {
+function creaNodo(tipo, txt) {
 
     let nodo;
     let texto;
@@ -38,7 +38,7 @@
  * @param {*} padre Elemento padre
  * @param {*} nodo Nodo que se inserta
  */
-export function insertarAlFinal(padre, nodo){
+function insertarAlFinal(padre, nodo) {
     padre.appendChild(nodo);
 }
 
@@ -49,7 +49,7 @@ export function insertarAlFinal(padre, nodo){
  * @param {*} newNodo Nodo a insertar
  * @param {*} nodoRef Nodo referencia
  */
-export function insertaEnBefore(padre, newNodo, nodoRef){
+function insertaEnBefore(padre, newNodo, nodoRef) {
     padre.insertBefore(newNodo, nodoRef);
 }
 
@@ -60,9 +60,9 @@ export function insertaEnBefore(padre, newNodo, nodoRef){
  * @param {*} newNodo 
  * @param {*} nodoRef 
  */
-export function insertarEnAfter(padre, newNodo, nodoRef){
+function insertarEnAfter(padre, newNodo, nodoRef) {
 
-    if(nodoRef.nextSibling)
+    if (nodoRef.nextSibling)
         padre.insertBefore(newNodo, nodoRef.nextSibling);
     else
         padre.appendChild(newNodo);
@@ -73,7 +73,7 @@ export function insertarEnAfter(padre, newNodo, nodoRef){
  * Función que elimina un nodo que se le pasa como parámetro
  * @param {*} nodo El nodo a eliminar
  */
-export function eliminaNodo(nodo){
+function eliminaNodo(nodo) {
     nodo.remove();
 }
 
@@ -84,7 +84,7 @@ export function eliminaNodo(nodo){
  * @param {*} newNodo Nodo nuevo
  * @param {*} oldNodo Nodo a reemplazar
  */
-export function reemplazaNodo(padre, newNodo, oldNodo){
+function reemplazaNodo(padre, newNodo, oldNodo) {
     padre.replaceChild(newNodo, oldNodo);
 }
 
@@ -96,7 +96,7 @@ export function reemplazaNodo(padre, newNodo, oldNodo){
  *                    Si es "false" solo clona el elemento
  * @returns Devuelve el clon
  */
-export function clonaNodo(nodo, boolean){    
+function clonaNodo(nodo, boolean) {
     return nodo.cloneNode(boolean);
 }
 
@@ -106,7 +106,7 @@ export function clonaNodo(nodo, boolean){
  * @param {*} atributo Atributo
  * @param {*} valor Valor del atributo
  */
-export function añadeAtributo(nodo, atributo, valor){
+function añadeAtributo(nodo, atributo, valor) {
     nodo.setAttribute(atributo, valor);
 }
 
@@ -127,7 +127,7 @@ export function añadeAtributo(nodo, atributo, valor){
  * @param {*} valor Valor de la cookie
  * @param {*} expira Momento en el que expira
  */
-export function creaCookie(nombre, valor, expira) {
+function creaCookie(nombre, valor, expira) {
 
     if (expira == undefined) { //no le pongo expire, luego expira al cerrar sesión
         document.cookie = nombre + "=" + valor;
@@ -145,7 +145,7 @@ export function creaCookie(nombre, valor, expira) {
  * @param {*} s Segundos
  * @returns La nueva hora en formato UTCString
  */
-export function expiraEn(h, m, s) {
+function expiraEn(h, m, s) {
 
     let ahora = new Date();
 
@@ -162,14 +162,14 @@ export function expiraEn(h, m, s) {
  * @param {*} a Años que se sumarán
  * @returns La nueva hora en formato UTCString
  */
-export function expiraDentroDe(d, m, a){
+function expiraDentroDe(d, m, a) {
 
     let ahora = new Date();
 
-    ahora.setDate(ahora.getDate()+d);
-    ahora.setMonth(ahora.getMonth()+m);
-    ahora.setFullYear(ahora.getFullYear()+a);
-    return ahora.toUTCString();    
+    ahora.setDate(ahora.getDate() + d);
+    ahora.setMonth(ahora.getMonth() + m);
+    ahora.setFullYear(ahora.getFullYear() + a);
+    return ahora.toUTCString();
 }
 
 /**
@@ -182,17 +182,17 @@ export function expiraDentroDe(d, m, a){
  * @param {*} s Segundos
  * @returns 
  */
-export function expiraExtraLargo(d, m, a, h, min, s){
+function expiraExtraLargo(d, m, a, h, min, s) {
 
-    let ahora= new Date();
+    let ahora = new Date();
 
-    ahora.setDate(ahora.getDate()+d);
-    ahora.setMonth(ahora.getMonth()+m);
-    ahora.setFullYear(ahora.getFullYear()+a);
+    ahora.setDate(ahora.getDate() + d);
+    ahora.setMonth(ahora.getMonth() + m);
+    ahora.setFullYear(ahora.getFullYear() + a);
 
-    ahora.setHours(ahora.getHours()+h);
-    ahora.setMinutes(ahora.getMinutes()+min);
-    ahora.setSeconds(ahora.getSeconds()+s);
+    ahora.setHours(ahora.getHours() + h);
+    ahora.setMinutes(ahora.getMinutes() + min);
+    ahora.setSeconds(ahora.getSeconds() + s);
 
     return ahora.toUTCString();
 }
@@ -205,15 +205,15 @@ export function expiraExtraLargo(d, m, a, h, min, s){
  * @param {*} nomCookie 
  * @returns El valor de la cookie
  */
-export function obtenerCookie(nomCookie){
+function obtenerCookie(nomCookie) {
 
-    if(document.cookie!=""){
-        let arrayCoookies= document.cookie.split(";");
+    if (document.cookie != "") {
+        let arrayCoookies = document.cookie.split(";");
 
-        for(let i in arrayCoookies){
-            if(arrayCoookies[i].match(nomCookie)){
-                let encontrada= arrayCoookies[i].split("=");
-                let value= encontrada[1].trim();
+        for (let i in arrayCoookies) {
+            if (arrayCoookies[i].match(nomCookie)) {
+                let encontrada = arrayCoookies[i].split("=");
+                let value = encontrada[1].trim();
                 return value; //también me duele ese return Rosi :(
             }
         }
@@ -222,14 +222,14 @@ export function obtenerCookie(nomCookie){
 }
 
 
-export function obtenerTodasCookies(){
-    let array=[];
-    if(document.cookie!=""){
-        let arrayCookies= document.cookie.split(";");
+function obtenerTodasCookies() {
+    let array = [];
+    if (document.cookie != "") {
+        let arrayCookies = document.cookie.split(";");
 
-        for(let i in arrayCookies){
-            let clave= arrayCookies[i].split("=")[0];
-            clave= clave.trim();
+        for (let i in arrayCookies) {
+            let clave = arrayCookies[i].split("=")[0];
+            clave = clave.trim();
             array.push(clave);
         }
         return array;
@@ -245,7 +245,7 @@ export function obtenerTodasCookies(){
  * Función que elimina la cookie que se le pasa como parámetro
  * @param {*} nomCookie 
  */
-export function eliminaCookie(nomCookie){
+function eliminaCookie(nomCookie) {
 
     let fechaNacimiento = new Date(1988, 9, 17); //MI CUMPLE :p
 
@@ -267,7 +267,7 @@ export function eliminaCookie(nomCookie){
  * @param {*} clave
  * @param {*} valor 
  */
-export function creaSessionStorage(clave, valor){
+function creaSessionStorage(clave, valor) {
     sessionStorage.setItem(clave, valor);
 }
 
@@ -277,7 +277,7 @@ export function creaSessionStorage(clave, valor){
  * @param {*} clave 
  * @returns El valor asociado a esa clave. Si no existe, devuelve null
  */
-export function obtenerSessionStorage(clave){
+function obtenerSessionStorage(clave) {
     return sessionStorage.getItem(clave);
 }
 
@@ -286,7 +286,7 @@ export function obtenerSessionStorage(clave){
  * Función que elimina una Session Storage a partir de su clave
  * @param {*} clave 
  */
-export function eliminaUnaSessionStorage(clave){
+function eliminaUnaSessionStorage(clave) {
     sessionStorage.removeItem(clave);
 }
 
@@ -294,7 +294,7 @@ export function eliminaUnaSessionStorage(clave){
 /**
  * Función que elimina todas las Session Storage
  */
-export function eliminaTodasSessionStorage(){
+function eliminaTodasSessionStorage() {
     sessionStorage.clear();
 }
 
@@ -303,7 +303,7 @@ export function eliminaTodasSessionStorage(){
  * Función que nos devuelve el número de Session Storage que hay actualmente.
  * @returns El número de Session Storage que hay
  */
-export function cuantasSessionStorage(){
+function cuantasSessionStorage() {
     return sessionStorage.length;
 }
 
@@ -311,15 +311,15 @@ export function cuantasSessionStorage(){
  * Función que devuelve, en un array, las claves de todas las Session Storage
  * @returns Array con todas las claves
  */
- export function obtenerTodasSessionStorage(){
+function obtenerTodasSessionStorage() {
 
-    let length= cuantasSessionStorage();
+    let length = cuantasSessionStorage();
 
-    let array=[];
+    let array = [];
 
-    for(let i=0; i<length; i++){
+    for (let i = 0; i < length; i++) {
 
-        let localS= sessionStorage.key(i);
+        let localS = sessionStorage.key(i);
         array.push(localS);
     }
     return array;
@@ -341,7 +341,7 @@ export function cuantasSessionStorage(){
  * @param {*} clave
  * @param {*} valor 
  */
- export function creaLocalStorage(clave, valor){
+function creaLocalStorage(clave, valor) {
     localStorage.setItem(clave, valor);
 }
 
@@ -351,7 +351,7 @@ export function cuantasSessionStorage(){
  * @param {*} clave 
  * @returns El valor asociado a esa clave. Si no existe, devuelve null
  */
-export function obtenerLocalStorage(clave){
+function obtenerLocalStorage(clave) {
     return localStorage.getItem(clave);
 }
 
@@ -360,7 +360,7 @@ export function obtenerLocalStorage(clave){
  * Función que elimina una Session Storage a partir de su clave
  * @param {*} clave 
  */
-export function eliminaUnaLocalStorage(clave){
+function eliminaUnaLocalStorage(clave) {
     localStorage.removeItem(clave);
 }
 
@@ -368,7 +368,7 @@ export function eliminaUnaLocalStorage(clave){
 /**
  * Función que elimina todas las Session Storage
  */
-export function eliminaTodasLocalStorage(){
+function eliminaTodasLocalStorage() {
     localStorage.clear();
 }
 
@@ -377,7 +377,7 @@ export function eliminaTodasLocalStorage(){
  * Función que nos devuelve el número de Session Storage que hay actualmente.
  * @returns El número de Session Storage que hay
  */
-export function cuantasLocalStorage(){
+function cuantasLocalStorage() {
     return localStorage.length;
 }
 
@@ -385,15 +385,15 @@ export function cuantasLocalStorage(){
  * Función que devuelve, en un array, las claves de todas las LocalStorage
  * @returns Array con todas las claves
  */
-export function obtenerTodasLocalStorage(){
+function obtenerTodasLocalStorage() {
 
-    let length= cuantasLocalStorage();
+    let length = cuantasLocalStorage();
 
-    let array=[];
+    let array = [];
 
-    for(let i=0; i<length; i++){
+    for (let i = 0; i < length; i++) {
 
-        let localS= localStorage.key(i);
+        let localS = localStorage.key(i);
         array.push(localS);
     }
     return array;
@@ -416,16 +416,16 @@ export function obtenerTodasLocalStorage(){
  * @param {*} nom Nombre de la caché
  * @param {*} req Elemento request
  */
-export function addCache(nom, req){
+function addCache(nom, req) {
 
-    if("caches" in window){
+    if ("caches" in window) {
         caches.open(nom)
-        .then(function(cache){
-            cache.add(req);
-        })
-        .catch(function(er){
-            console.error("ERROR al add elemento en la caché " + nom + " er " + er);
-        })
+            .then(function (cache) {
+                cache.add(req);
+            })
+            .catch(function (er) {
+                console.error("ERROR al add elemento en la caché " + nom + " er " + er);
+            })
     }
 }
 
@@ -435,16 +435,16 @@ export function addCache(nom, req){
  * @param {*} nom Nombre de la caché
  * @param {*} array Array de request
  */
-export function addAllCache(nom, array){
+function addAllCache(nom, array) {
 
-    if("caches" in window){
+    if ("caches" in window) {
         caches.open(nom)
-        .then(function(cache){
-            cache.addAll(array);
-        })
-        .catch(function(er){
-            console.error("ERROR al addAll en la caché " + nom + "er " + er);
-        })
+            .then(function (cache) {
+                cache.addAll(array);
+            })
+            .catch(function (er) {
+                console.error("ERROR al addAll en la caché " + nom + "er " + er);
+            })
     }
 }
 
@@ -454,24 +454,24 @@ export function addAllCache(nom, array){
  * @param {*} nom Nombre de la caché
  * @param {*} req Elemento a añadir en caché
  */
-export function putCache(nom, req){
+function putCache(nom, req) {
 
-    if("caches" in window){
+    if ("caches" in window) {
         caches.open(nom)
-        .then(function(cache){
-            fetch(req)
-            .then(function(response){
-                if(response){
-                    cache.put(req, response);
-                }
+            .then(function (cache) {
+                fetch(req)
+                    .then(function (response) {
+                        if (response) {
+                            cache.put(req, response);
+                        }
+                    })
+                    .catch(function (er) {
+                        console.error("ERROR en el fetch del put de la caché " + nom + " er " + er);
+                    })
             })
-            .catch(function(er){
-                console.error("ERROR en el fetch del put de la caché " + nom + " er " + er);
+            .catch(function (er) {
+                console.error("ERROR al put en la caché " + nom + " er " + er);
             })
-        })
-        .catch(function(er){
-            console.error("ERROR al put en la caché " + nom + " er " + er);
-        })
     }
 }
 
@@ -479,15 +479,15 @@ export function putCache(nom, req){
  * Función que elimina la caché que se le pasa como parámetro
  * @param {*} nom Nombre de la caché a eliminar
  */
-export function deleteCache(nom){
+function deleteCache(nom) {
 
     caches.has(nom)
-    .then(function(){
-        caches.delete(nom);
-    })
-    .catch(function(er){
-        console.error("ERROR en el has de la cache " + nom + " er " + er);
-    });
+        .then(function () {
+            caches.delete(nom);
+        })
+        .catch(function (er) {
+            console.error("ERROR en el has de la cache " + nom + " er " + er);
+        });
 }
 
 
@@ -496,23 +496,23 @@ export function deleteCache(nom){
  * @param {*} nomCache Nombre de la caché
  * @param {*} req El recurso a eliminar
  */
-export function deleteRequestCache(nomCache, req){
+function deleteRequestCache(nomCache, req) {
 
     caches.has(nomCache)
-    .then(function(existe){
-        if(existe){
-            caches.open(nomCache)
-            .then(function(cache){
-                cache.delete(req);
-            })
-            .catch(function(er){
-                console.error("ERROR en el open (deleteRequesCache) de la cache " + nomCache + " er " + er);
-            })
-        }
-    })
-    .catch(function(er){
-        console.error("ERROR en el has (deleteRequestCache) de la cache " + nomCache + " er " + er);
-    })
+        .then(function (existe) {
+            if (existe) {
+                caches.open(nomCache)
+                    .then(function (cache) {
+                        cache.delete(req);
+                    })
+                    .catch(function (er) {
+                        console.error("ERROR en el open (deleteRequesCache) de la cache " + nomCache + " er " + er);
+                    })
+            }
+        })
+        .catch(function (er) {
+            console.error("ERROR en el has (deleteRequestCache) de la cache " + nomCache + " er " + er);
+        })
 }
 
 
@@ -520,33 +520,33 @@ export function deleteRequestCache(nomCache, req){
  * Función que elimina un elemento concreto de TODAS las cachés
  * @param {*} req 
  */
-export function deleteRequestAllCaches(req){
+function deleteRequestAllCaches(req) {
 
     caches.keys()
-    .then(function(arrayCaches){
-        if(arrayCaches.length!=0){
-            eliminaElementos(arrayCaches, req);
-        }
-    })
-    .catch(function(er){
-        console.error("ERROR en el keys (deleteRequestAllCaches)" + er); 
-    })
+        .then(function (arrayCaches) {
+            if (arrayCaches.length != 0) {
+                eliminaElementos(arrayCaches, req);
+            }
+        })
+        .catch(function (er) {
+            console.error("ERROR en el keys (deleteRequestAllCaches)" + er);
+        })
 }
 
 /**
  * Función auxiliar que ayuda a eliminar un elemento concreto de TODAS las cachés
  * @param {*} arrayCaches 
  */
-function eliminaElementos(arrayCaches, req){
+function eliminaElementos(arrayCaches, req) {
 
-    for(let i in arrayCaches){
+    for (let i in arrayCaches) {
         caches.open(arrayCaches[i])
-        .then(function(cache){
-            cache.delete(req);
-        })
-        .catch(function(er){
-            console.error("ERROR en el open al eliminar el elemento de la caché");
-        })
+            .then(function (cache) {
+                cache.delete(req);
+            })
+            .catch(function (er) {
+                console.error("ERROR en el open al eliminar el elemento de la caché");
+            })
     }
 }
 
@@ -559,56 +559,56 @@ function eliminaElementos(arrayCaches, req){
  * @param {*} elemento Elemento del html donde irá el dato en caso de encontrarlo
  * @param {*} atributo Atributo del elemento (src, href, class, etc)
  */
-export function matchCacheAndAdd(req, nomCache, elemento, atributo){
+function matchCacheAndAdd(req, nomCache, elemento, atributo) {
 
     caches.match(req)
-        .then(function(resp){
-            if(resp){
+        .then(function (resp) {
+            if (resp) {
                 elemento.setAttribute(atributo, resp.url);
             }
-            else{
+            else {
                 caches.open(nomCache)
-                    .then(function(cache){
+                    .then(function (cache) {
                         cache.add(req);
                     })
-                    .catch(function(er){
+                    .catch(function (er) {
                         console.error("ERROR en el open del matchCacheAndAdd " + er);
                     })
             }
         })
-        .catch(function(er){
+        .catch(function (er) {
             console.error("ERROR en el match del matchCacheAndAdd " + er);
         })
 }
 
 
-export function matchCacheAndAdd222(req, nomCache, elemento, atributo){
+function matchCacheAndAdd222(req, nomCache, elemento, atributo) {
 
     caches.match(req)
-        .then(function(resp){
-            if(resp){
+        .then(function (resp) {
+            if (resp) {
                 elemento.setAttribute(atributo, resp.url);
             }
-            else{
+            else {
                 fetch(req)
-                    .then(function(resp){
-                        if(resp.ok){
+                    .then(function (resp) {
+                        if (resp.ok) {
                             caches.open(nomCache)
-                            .then(function(cache){
-                                cache.add(resp.url);
-                            })
-                            .catch(function(er){
-                                console.error("ERROR en el open del matchCacheAndAdd " + er);
-                            })
+                                .then(function (cache) {
+                                    cache.add(resp.url);
+                                })
+                                .catch(function (er) {
+                                    console.error("ERROR en el open del matchCacheAndAdd " + er);
+                                })
                         }
                     })
-                    .catch(function(er){
+                    .catch(function (er) {
                         console.error("ERROR en el fetch de matchCacheAndAdd " + er)
                     })
-                
+
             }
         })
-        .catch(function(er){
+        .catch(function (er) {
             console.error("ERROR en el match del matchCacheAndAdd " + er);
         })
 }
@@ -621,13 +621,13 @@ export function matchCacheAndAdd222(req, nomCache, elemento, atributo){
  * 
  *********************/
 
-export function creaNotificacion(titulo, msn, icono){
+function creaNotificacion(titulo, msn, icono) {
 
-    if(!("Notification" in window)){
+    if (!("Notification" in window)) {
         alert("Este navegador No soporta notificaciones");
     }
-    else if(Notification.permission == "granted"){
-        let options ={
+    else if (Notification.permission == "granted") {
+        let options = {
             body: msn,
             icon: icono
         }
@@ -635,10 +635,10 @@ export function creaNotificacion(titulo, msn, icono){
         setTimeout(noti.close.bind(noti), 5000);
         // return noti;
     }
-    else if(Notification!=='denied'){
-        Notification.requestPermission(function(permiso){
-            if(permiso==="granted"){
-                let noti= new Notification("Ahora podrás recibir notificaciones");
+    else if (Notification !== 'denied') {
+        Notification.requestPermission(function (permiso) {
+            if (permiso === "granted") {
+                let noti = new Notification("Ahora podrás recibir notificaciones");
             }
         })
     }
@@ -663,7 +663,7 @@ export function creaNotificacion(titulo, msn, icono){
  * @param {*} date 
  * @returns La hora del objeto Date (hh:mm:ss)
  */
-export function devuelveHora(date){
+function devuelveHora(date) {
     return date.toLocaleTimeString();
 }
 
@@ -677,13 +677,13 @@ export function devuelveHora(date){
  * @param {*} s Segundos
  * @returns La fecha ya restada
  */
-export function temporizador(date, h, m, s){
+function temporizador(date, h, m, s) {
 
-    date.setHours((date.getHours()+h)-(date.getHours()));
-    date.setMinutes((date.getMinutes()+m)-(date.getMinutes()));
-    date.setSeconds((date.getSeconds()+s)-(date.getSeconds()));
+    date.setHours((date.getHours() + h) - (date.getHours()));
+    date.setMinutes((date.getMinutes() + m) - (date.getMinutes()));
+    date.setSeconds((date.getSeconds() + s) - (date.getSeconds()));
 
-    return date;    
+    return date;
 }
 
 
@@ -699,8 +699,8 @@ export function temporizador(date, h, m, s){
  * @param {*} max 
  * @returns 
  */
-export function generaAleatorio(min, max){
-    let num = Math.random()*(max - min)+min;
+function generaAleatorio(min, max) {
+    let num = Math.random() * (max - min) + min;
     num = Math.round(num);
     return num;
 }
@@ -709,5 +709,20 @@ export function generaAleatorio(min, max){
 
 
 
+/**
+ * Función que ordena un array de objetos por la propiedad NOMBRE_PROVINCIA
+ * @param {*} orden -> ASC o DESC
+ * @param {*} array -> El array de objetos
+ * @returns 
+ */
+function ordenaArrayObjetos(orden, array, propiedad){
+
+    if(orden=="ASC")
+        array.sort((x, y) => x[propiedad].localeCompare(y[propiedad]));
+    else
+        array.sort((x, y) => y[propiedad].localeCompare(x[propiedad]));
+    
+    return array;
+}
 
 
